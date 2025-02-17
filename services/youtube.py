@@ -5,6 +5,7 @@ import os
 from typing import Optional
 import re
 
+
 class YouTubeDownloader:
     @staticmethod
     def _extract_video_id(url: str) -> str:
@@ -30,7 +31,7 @@ class YouTubeDownloader:
             output_file = os.path.join(output_path, f"{video_id}.mp4")
 
             ydl_opts = {
-                'format': 'best[filesize<50M]/best',  # Выбираем лучшее качество с ограничением размера
+                'format': 'best[filesize<50M]/best',
                 'outtmpl': output_file,
                 'quiet': True,
                 'no_warnings': True,

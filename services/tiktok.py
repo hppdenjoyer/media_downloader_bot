@@ -5,6 +5,7 @@ import os
 import re
 from typing import Optional
 
+
 class TikTokDownloader:
     def __init__(self):
         self.headers = {
@@ -34,9 +35,9 @@ class TikTokDownloader:
 
             output_path = os.path.join(Config.DOWNLOAD_PATH, 'tiktok')
             os.makedirs(output_path, exist_ok=True)
-            
+
             file_path = os.path.join(output_path, f"video_{video_id}.mp4")
-            
+
             ydl_opts = {
                 'format': 'best',
                 'outtmpl': file_path,
@@ -47,13 +48,13 @@ class TikTokDownloader:
             try:
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
                     ydl.download([url])
-                
+
                 if os.path.exists(file_path):
                     file_size = os.path.getsize(file_path)
                     if file_size > Config.MAX_FILE_SIZE:
                         os.remove(file_path)
                         raise ValueError("Размер файла превышает допустимый лимит (50 МБ)")
-                    
+
                     logger.info(f"Видео TikTok успешно загружено: {file_path}")
                     return file_path
                 else:

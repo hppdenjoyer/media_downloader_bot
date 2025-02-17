@@ -4,6 +4,7 @@ import redis.asyncio as redis
 from config import Config
 from utils.logger import logger
 
+
 class RedisCache:
     def __init__(self):
         self.redis = redis.Redis(
@@ -14,7 +15,10 @@ class RedisCache:
         )
 
     async def set(self, key: str, value: Any, expire: int = 3600) -> None:
-        """Set a key with value in Redis with optional expiration (default 1 hour)"""
+        """
+        Set a key with value in Redis with optional
+        expiration (default 1 hour)
+        """
         try:
             await self.redis.set(key, json.dumps(value), ex=expire)
         except Exception as e:

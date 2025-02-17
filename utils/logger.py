@@ -1,6 +1,7 @@
 import logging
 from config import Config
 
+
 def setup_logger():
     logging.basicConfig(
         level=Config.LOG_LEVEL,
@@ -11,5 +12,6 @@ def setup_logger():
         ]
     )
     return logging.getLogger(__name__)
+
 
 logger = setup_logger()

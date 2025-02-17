@@ -1,5 +1,5 @@
 from aiogram import types
-from aiogram.filters import Command
+
 
 async def start_handler(message: types.Message):
     """Handle /start command"""
@@ -16,6 +16,7 @@ async def start_handler(message: types.Message):
 Используй /help для просмотра всех доступных команд.
     """
     await message.answer(welcome_text)
+
 
 async def help_handler(message: types.Message):
     """Handle /help command"""

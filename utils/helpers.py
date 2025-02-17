@@ -1,6 +1,7 @@
 import re
 from urllib.parse import urlparse
 
+
 def get_platform(url: str) -> str:
     """Determine the platform from the URL."""
     parsed_url = urlparse(url)
@@ -14,6 +15,7 @@ def get_platform(url: str) -> str:
         return 'pinterest'
     else:
         return 'unknown'
+
 
 def is_valid_url(url: str) -> bool:
     """Check if the URL is valid."""

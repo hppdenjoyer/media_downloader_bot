@@ -11,7 +11,7 @@ from handlers import start_handler, help_handler, download_handler
 from utils.logger import logger
 import os
 
-# Initialize bot and dispatcher
+# Initialize bot
 bot = Bot(
     token=Config.BOT_TOKEN,
     default=DefaultBotProperties(parse_mode=ParseMode.HTML)
@@ -32,6 +32,7 @@ dp.message.register(help_handler, Command(commands=['help']))
 dp.message.register(download_handler, Command(commands=['download']))
 dp.message.register(download_handler)  # Handle all messages as potential URLs
 
+
 async def on_startup():
     """Setup actions on startup"""
     logger.info("Bot started")
@@ -45,6 +46,7 @@ async def on_startup():
         )
         logger.info(f"Webhook set to {Config.WEBHOOK_URL + Config.WEBHOOK_PATH}")
 
+
 async def on_shutdown():
     """Cleanup on shutdown"""
     logger.info("Shutting down...")
@@ -52,6 +54,7 @@ async def on_shutdown():
         await bot.delete_webhook()
     await redis_client.close()
     await bot.session.close()
+
 
 async def main():
     logger.info("Starting bot...")
@@ -86,6 +89,7 @@ async def main():
             on_startup=on_startup,
             on_shutdown=on_shutdown
         )
+
 
 if __name__ == '__main__':
     asyncio.run(main())
